@@ -6,7 +6,6 @@ const { REACT_APP_GOOGLE_CLIENT_ID, REACT_APP_BASE_BACKEND_URL } = process.env;
 
 export const Login = () => {
   const history = useHistory();
-//   const { setUser } = useContext(UserContext);
 
   useEffect(() => {
     const queryParams = new URLSearchParams(history.location.search);
@@ -19,37 +18,10 @@ export const Login = () => {
     }
   }, [history]);
 
-//   const handleUserInit = useCallback(
-//     resp => {
-//       if (resp.ok) {
-//         setUser(resp.data);
-//         history.push("/");
-//       } else {
-//         window.alert("Error occured!")
-//       }
-//     },
-//     [history, setUser]
-//   );
-
-//   const onGoogleLoginSuccess = useCallback(
-//     response => {
-//       const idToken = response.tokenId;
-//       const data = {
-//         email: response.profileObj.email,
-//         first_name: response.profileObj.givenName,
-//         last_name: response.profileObj.familyName
-//       };
-
-//       validateTokenAndObtainSession({ data, idToken })
-//         .then(handleUserInit)
-//         .catch(notifyError);
-//     },
-//     [handleUserInit]
-//   );
 
   const openGoogleLoginPage = useCallback(() => {
     const googleAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
-    const redirectUri = 'api/v1/auth/login/google/';
+    const redirectUri = 'accounts/google/login/callback/';
 
     const scope = [
       'https://www.googleapis.com/auth/userinfo.email',
@@ -83,6 +55,3 @@ export const Login = () => {
       </>
   );
 };
-
-// export default Login;
-// className={styles.pageHeader}
