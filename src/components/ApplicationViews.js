@@ -5,7 +5,7 @@ import { MovieTvProvider } from "./movieTv/MovieTvProvider"
 
 export const ApplicationViews = () => {
     return <>
-        <Route exact path= "/movielist">
+        <Route path= "/profile">
             <MovieTvProvider>
                 <MovieTvList/>
             </MovieTvProvider>
