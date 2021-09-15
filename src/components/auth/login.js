@@ -40,7 +40,8 @@ export const Login = () => {
     const urlParams = new URLSearchParams(params).toString();
 
     window.location = `${googleAuthUrl}?${urlParams}`;
-  }, []);
+  }, [])
+
 
   return (
       <>

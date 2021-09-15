@@ -1,7 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
+import { ApplicationViews } from "./ApplicationViews"
 import { Login } from "./auth/login"
-// import { ApplicationViews } from "./ApplicationViews"
 // import { NavBar } from "./nav/NavBar"
 // import { Register } from "./auth/Register"
 
@@ -9,6 +9,7 @@ export const Spooktober = () => (
     <>
         <Route path="/login" render={Login} />
         <Login/>
+        <ApplicationViews/>
     </>
 )
 
