@@ -11,7 +11,7 @@ export const MovieTvProvider = (props) => {
             headers:{
                 // need to figure out how to get authenticated from google
                 // "Authorization": `Token ${localStorage.getItem("lu_token")}`
-                "Authorization": `Token 382d5b67ddaf88d071e41206c245e4bff9447cfe`
+                "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
             }
         })
             .then(response => response.json())
@@ -23,7 +23,7 @@ export const MovieTvProvider = (props) => {
             // need to figure out how to get authenticated from google
             headers: {
                 // "Authorization": `Token ${localStorage.getItem("lu_token")}`
-                "Authorization": `Token 382d5b67ddaf88d071e41206c245e4bff9447cfe`
+                "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
             }
         }
          )

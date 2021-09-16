@@ -1,58 +1,46 @@
-import React, { useEffect, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
-import GoogleButton from 'react-google-button';
+import { GoogleLogin } from 'react-google-login';
+import { useHistory } from 'react-router-dom'
 
-const { REACT_APP_GOOGLE_CLIENT_ID, REACT_APP_BASE_BACKEND_URL } = process.env;
 
 export const Login = () => {
-  const history = useHistory();
+  const history = useHistory()
 
-  useEffect(() => {
-    const queryParams = new URLSearchParams(history.location.search);
+  const loginWithGoogleCredentials = (response) => {
+        return fetch(`http://127.0.0.1:8000/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(response.profileObj)
 
-    const error = queryParams.get('error');
+    })
+       .then(res => res.json())
+       .then(data => {
+         if (data.valid && data.token) {
+           localStorage.setItem("spooktober_token", data.token)
+           history.push("/profile")
+         } else {
+           window.alert("Login failed.")
+         }
+       })
+   }
 
-    if (error) {
-      window.alert(error);
-      history.replace({ search: null });
-    }
-  }, [history]);
+   const responseGoogle_error = () => {
+     alert('Google could not verify your account.')
+   }
 
+   return (
+     <>
+       <GoogleLogin
+         clientId='151641205925-1m112obp0km0gd74pongd3i1upco1019.apps.googleusercontent.com'
+         buttonText="Login using Google"
+         onSuccess={loginWithGoogleCredentials}
+         onFailure={responseGoogle_error}
+         cookiePolicy={'single_host_origin'}
+         isSignedIn={true}
+       />
+     </>
+   )
+}
 
-  const openGoogleLoginPage = useCallback(() => {
-    const googleAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
-    const redirectUri = 'accounts/google/login/callback/';
-
-    const scope = [
-      'https://www.googleapis.com/auth/userinfo.email',
-      'https://www.googleapis.com/auth/userinfo.profile'
-    ].join(' ');
-
-    const params = {
-      response_type: 'code',
-      client_id: REACT_APP_GOOGLE_CLIENT_ID,
-      redirect_uri: `${REACT_APP_BASE_BACKEND_URL}/${redirectUri}`,
-      prompt: 'select_account',
-      access_type: 'offline',
-      scope
-    };
-
-    const urlParams = new URLSearchParams(params).toString();
-
-    window.location = `${googleAuthUrl}?${urlParams}`;
-  }, [])
-
-
-  return (
-      <>
-      <h1 >Welcome to Spooktober!</h1>
-
-      <h2>Server-side flow:</h2>
-      <GoogleButton
-        onClick={openGoogleLoginPage}
-        label="Sign in with Google"
-        disabled={!REACT_APP_GOOGLE_CLIENT_ID}
-      />
-      </>
-  );
-};
