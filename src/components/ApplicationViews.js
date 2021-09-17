@@ -9,8 +9,8 @@ export const ApplicationViews = () => {
         
         <MovieTvProvider>
             <Route path= "/profile">
-                <MovieTvList/>
                 <CalendarView/>
+                <MovieTvList/>
             </Route>
             <Route path="/calendar">
             </Route>
