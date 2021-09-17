@@ -3,11 +3,11 @@ import React, { useState } from "react"
 export const CalendarContext = React.createContext()
 
 export const CalendarProvider = (props) => {
-    const [event, setEvents ] = useState([])
+    const [events, setEvents ] = useState([])
 
 
     const getCal = () => {
-        return fetch("http://localhost:8000/profile/calendar", {
+        return fetch("http://localhost:8000/calendar", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
             }
@@ -17,11 +17,11 @@ export const CalendarProvider = (props) => {
     }
 
     const createEvent = (event) => {
-        return fetch("http://localhost:8000/profile/calendar", {
+        return fetch("http://localhost:8000/calendar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Token ${localStorage.getItem("spootober_token")}`
+                "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
             },
             body: JSON.stringify(event)
          })
@@ -29,7 +29,7 @@ export const CalendarProvider = (props) => {
     }
 
     const getEvent = (event_id) => {
-        return fetch(`http://localhost:8000/profile/calendar/${event_id}`, {
+        return fetch(`http://localhost:8000/calendar/${event_id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
             }
@@ -38,7 +38,7 @@ export const CalendarProvider = (props) => {
     }
     
     const updateEvent = (event) => {
-        return fetch(`http://localhost:8000/games/${event.id}`, {
+        return fetch(`http://localhost:8000/calendar/${event.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export const CalendarProvider = (props) => {
     
 
     return (
-        <CalendarContext.Provider value={{ getCal, createEvent, getEvent, updateEvent, event, setEvents }} >
+        <CalendarContext.Provider value={{ getCal, createEvent, getEvent, updateEvent, events, setEvents }} >
             { props.children }
         </CalendarContext.Provider>
     )
