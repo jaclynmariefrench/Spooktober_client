@@ -5,11 +5,11 @@ import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker"
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import "react-datepicker/dist/react-datepicker.css"
 import { CalendarContext } from "./CalendarProvider";
 import { useContext } from "react";
 import { useEffect } from "react";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import "react-datepicker/dist/react-datepicker.css"
 
 
 const locales = {
