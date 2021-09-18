@@ -10,7 +10,7 @@ export const Spooktober = () => (
         <Route exact path="/login">
             <Login/>
         </Route>
-        <Route path="/profile">
+        <Route path="/">
             <NavBar/>
             <ApplicationViews/>
         </Route>
