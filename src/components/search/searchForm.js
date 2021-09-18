@@ -18,13 +18,48 @@ export const SimpleSearch = () => {
                     setSearchTerm(e.target.value)
                 }}
             />
+            <fieldset className="search_form">
+            <h2 className="dropdown__title">What's the spirit?</h2>
+                <div className="form-group">
+                <select
+                    onChange={(e)=> {
+                        setSearchTerm(e.target.value)
+                    }}
+                >
+                    <option value="0">Select the Spirit</option>
+                    {movieTvs.map((m) => (
+                    <option key={m.id} value={m.id}>
+                        {m.spirit}
+                    </option>
+                    ))}
+                </select>
+                </div>
+            </fieldset>
+            <fieldset className="search_form">
+            <h2 className="dropdown__title">What's the era?</h2>
+                <div className="form-group">
+                <select
+                    onChange={(e)=> {
+                        setSearchTerm(e.target.value)
+                    }}
+                >
+                    <option value="0">Select the Era</option>
+                    {movieTvs.map((m) => (
+                    <option key={m.id} value={m.id}>
+                        {m.era}
+                    </option>
+                    ))}
+                </select>
+                </div>
+            </fieldset>
             {/* RESULTS */}
             {
                 movieTvs.filter(
                     (value)=> {
                         if (searchTerm == "") {
                             return value
-                        } else if (value.title.toLowerCase().includes(searchTerm.toLowerCase()))
+                        } else if (value.title.toLowerCase().includes(searchTerm.toLowerCase()), 
+                        value.subGenre.toLowerCase().includes(searchTerm.toLowerCase()))
                         {
                             return value
                         }    
