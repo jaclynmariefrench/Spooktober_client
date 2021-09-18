@@ -30,7 +30,7 @@ export const CalendarView = () => {
 
     const [newEvent, setNewEvent ] = useState({movie_tv: "", title: "", start: "", end: ""})
 
-    const { getCal, createEvent, events } = useContext(CalendarContext)
+    const { getCal, createEvent, events, deleteEvent } = useContext(CalendarContext)
 
     useEffect(() => {
         getCal()
@@ -46,7 +46,27 @@ export const CalendarView = () => {
         }
         createEvent(newMovie)
     }
-    
+
+    const onSelectEvent=(pEvent) => {
+        const r = window.confirm("Would you like to remove this event?")
+        console.log(pEvent.id)
+        if(r === true){
+            deleteEvent(pEvent.id)
+
+        }}
+        
+
+
+    //     setNewEvent((prevState, props) => {
+    //         const events = [...prevState.events]
+    //         const idx = events.indexOf(pEvent)
+    //         events.splice(idx, 1);
+    //         return { events };
+    //       });
+    //     }
+    //   }
+      
+        
 
     return(
         <div className="calendar">
@@ -74,12 +94,16 @@ export const CalendarView = () => {
                     </button>
             </div>
             <Calendar 
+                selectable
+                onSelectEvent={event => onSelectEvent(event)}
                 localizer={localizer} 
+                views={['month', 'agenda']}
                 events={events} 
                 startAccessor="start" 
                 endAccessor="end"
                 style={{height: 500, margin: "50px"}}/> 
         </div>
+ 
     )
 } 
 
