@@ -59,7 +59,8 @@ export const SimpleSearch = () => {
                         if (searchTerm == "") {
                             return value
                         } else if (value.title.toLowerCase().includes(searchTerm.toLowerCase()), 
-                        value.subGenre.toLowerCase().includes(searchTerm.toLowerCase()))
+                        value.subGenre.toLowerCase().includes(searchTerm.toLowerCase()),
+                        value.genre.toLowerCase().includes(searchTerm.toLowerCase()))
                         {
                             return value
                         }    
