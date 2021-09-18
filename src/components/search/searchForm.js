@@ -31,6 +31,7 @@ export const SimpleSearch = () => {
                     setSearchTerm(e.target.value)
                 }}
             />
+            {/* DROPDOWN TOWN */}
             <fieldset className="search_form">
             <h2 className="dropdown__title">What's the Era?</h2>
                 <div className="form-group">
@@ -71,12 +72,16 @@ export const SimpleSearch = () => {
                     (value)=> {
                         if (searchTerm == "") {
                             return value
-                        } else if (value.title.toLowerCase().includes(searchTerm.toLowerCase()), 
-                        value.subGenre.toLowerCase().includes(searchTerm.toLowerCase()),
-                        value.genre.toLowerCase().includes(searchTerm.toLowerCase()))
+                        } else if (value.title.toLowerCase().includes(searchTerm.toLowerCase())) 
                         {
                             return value
-                        }    
+                        } else if (value.genre.toLowerCase().includes(searchTerm.toLowerCase())) 
+                        {
+                            return value
+                        } else if (value.subGenre.toLowerCase().includes(searchTerm.toLowerCase())) 
+                        {
+                            return value
+                        }       
                     }).map(
                         (value, key)=> {
                             return(
@@ -85,7 +90,7 @@ export const SimpleSearch = () => {
                                 </div>
                             )
                         })}
-            
-        </div>
-    )
+                        
+                        </div>
+                        )
 }
