@@ -47,10 +47,26 @@ export const CalendarView = () => {
         createEvent(newMovie)
     }
 
-    const deleteMovieEvent = (movie) => {
-        deleteEvent(movie)
-    }
-    
+    const onSelectEvent=(pEvent) => {
+        const r = window.confirm("Would you like to remove this event?")
+        console.log(pEvent.id)
+        if(r === true){
+            deleteEvent(pEvent.id)
+
+        }}
+        
+
+
+    //     setNewEvent((prevState, props) => {
+    //         const events = [...prevState.events]
+    //         const idx = events.indexOf(pEvent)
+    //         events.splice(idx, 1);
+    //         return { events };
+    //       });
+    //     }
+    //   }
+      
+        
 
     return(
         <div className="calendar">
@@ -79,9 +95,7 @@ export const CalendarView = () => {
             </div>
             <Calendar 
                 selectable
-                // components={{
-                //     event: deleteMovieEvent,
-                // }}
+                onSelectEvent={event => onSelectEvent(event)}
                 localizer={localizer} 
                 views={['month', 'agenda']}
                 events={events} 
