@@ -1,12 +1,25 @@
 import { useContext, useEffect, useState } from "react"
 import { MovieTvContext } from "../movieTv/MovieTvProvider"
+import { SearchContext } from "../search/searchProvider"
 
 export const SimpleSearch = () => {
     const [searchTerm, setSearchTerm ] = useState("")
+    const [eraSelect, setEra ] = useState({id: ""})
+    const [spiritSelect, setSpirit ] = useState({id:""})
+    
     const { movieTvs, getMovieTv } = useContext(MovieTvContext)
+    const { getEras, eraList, spiritList, getSpirits } = useContext(SearchContext)
 
     useEffect(()=> {
         getMovieTv();
+    }, [])
+
+    useEffect(()=> {
+        getEras();
+    }, [])
+
+    useEffect(()=> {
+        getSpirits();
     }, [])
 
     return (
@@ -19,34 +32,34 @@ export const SimpleSearch = () => {
                 }}
             />
             <fieldset className="search_form">
-            <h2 className="dropdown__title">What's the spirit?</h2>
+            <h2 className="dropdown__title">What's the Era?</h2>
                 <div className="form-group">
                 <select
                     onChange={(e)=> {
-                        setSearchTerm(e.target.value)
+                        setSpirit(e.target.value)
                     }}
                 >
-                    <option value="0">Select the Spirit</option>
-                    {movieTvs.map((m) => (
+                    <option value="8">Select the Era</option>
+                    {eraList.map((m) => (
                     <option key={m.id} value={m.id}>
-                        {m.spirit}
+                        {m.label}
                     </option>
                     ))}
                 </select>
                 </div>
             </fieldset>
             <fieldset className="search_form">
-            <h2 className="dropdown__title">What's the era?</h2>
+            <h2 className="dropdown__title">What's the Spirit?</h2>
                 <div className="form-group">
                 <select
                     onChange={(e)=> {
-                        setSearchTerm(e.target.value)
+                        setEra(e.target.value)
                     }}
                 >
-                    <option value="0">Select the Era</option>
-                    {movieTvs.map((m) => (
+                    <option value="8">Select the Spirit</option>
+                    {spiritList.map((m) => (
                     <option key={m.id} value={m.id}>
-                        {m.era}
+                        {m.label}
                     </option>
                     ))}
                 </select>

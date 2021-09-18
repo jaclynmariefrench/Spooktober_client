@@ -5,6 +5,7 @@ import { CalendarView } from "./cal/calendarView"
 import { MovieTvList } from "./movieTv/MovieTvList"
 import { MovieTvProvider } from "./movieTv/MovieTvProvider"
 import { SimpleSearch } from "./search/searchForm"
+import { SearchProvider } from "./search/searchProvider"
 import { UserDetail } from "./user/UserDetail"
 import { UserProvider } from "./user/UserProvider"
 
@@ -16,11 +17,13 @@ export const ApplicationViews = () => {
                     <UserDetail/>
                     <CalendarView/>
                 </Route>
-            <MovieTvProvider>
-                <Route path="/search">
-                    <SimpleSearch/>
-                </Route>
-            </MovieTvProvider>
+            <SearchProvider>
+                <MovieTvProvider>
+                    <Route path="/search">
+                        <SimpleSearch/>
+                    </Route>
+                </MovieTvProvider>
+            </SearchProvider>
             </UserProvider>
             </CalendarProvider>
     </>
