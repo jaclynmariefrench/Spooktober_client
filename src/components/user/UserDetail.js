@@ -2,17 +2,18 @@ import React, { useContext, useEffect } from "react"
 import { UserContext } from "./UserProvider"
 
 export const UserDetail = () => {
-    // const {users, getUsers} = useContext(UserContext)
+    const {users, getUsers} = useContext(UserContext)
 
-    // useEffect(
-    //     () => {
-    //         getUsers()
-    //     },
-    //     [])
-
+    useEffect(
+        () => {
+            getUsers()
+        },
+        [])
+        
     return (
         <>
-            Hi, for now.
+        Profile
+
         </>
     )
 }
