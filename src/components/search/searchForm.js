@@ -4,8 +4,8 @@ import { SearchContext } from "../search/searchProvider"
 
 export const SimpleSearch = () => {
     const [searchTerm, setSearchTerm ] = useState("")
-    const [eraSelect, setEra ] = useState({id: ""})
-    const [spiritSelect, setSpirit ] = useState({id:""})
+    const [eraSelect, setEra ] = useState({id: 0})
+    const [spiritSelect, setSpirit ] = useState({id:0})
     
     const { movieTvs, getMovieTv } = useContext(MovieTvContext)
     const { getEras, eraList, spiritList, getSpirits } = useContext(SearchContext)
@@ -22,6 +22,19 @@ export const SimpleSearch = () => {
         getSpirits();
     }, [])
 
+    useEffect(()=> {
+        let filteredMovie = []
+          for (const movie of movieTvs) {
+            for (const era of eraList) {
+              if(movie.era === era.id){
+                filteredMovie.push(movie)
+              }
+            }
+          }
+        setEra(filteredMovie)
+      }, [])
+  
+
     return (
         <div className="simple-search">
             <input
@@ -37,7 +50,7 @@ export const SimpleSearch = () => {
                 <div className="form-group">
                 <select
                     onChange={(e)=> {
-                        setSpirit(e.target.value)
+                        setEra(e.target.value)
                     }}
                 >
                     <option value="8">Select the Era</option>
@@ -54,7 +67,7 @@ export const SimpleSearch = () => {
                 <div className="form-group">
                 <select
                     onChange={(e)=> {
-                        setEra(e.target.value)
+                        setSpirit(e.target.value)
                     }}
                 >
                     <option value="8">Select the Spirit</option>
@@ -90,6 +103,24 @@ export const SimpleSearch = () => {
                                 </div>
                             )
                         })}
+            {
+                movieTvs.filter(
+                    (value)=> {
+                        if(eraSelect == value.id) {
+                            return value
+                        }
+                    }
+                ).map(
+                    (value, key)=> {
+                        return(
+                            <div className="search-resutls" key={key}>
+                                <header>Era Resutls</header>
+                                <h2>{value.title}</h2>
+                            </div>
+                        )
+                    }
+                )
+            }
                         
                         </div>
                         )
