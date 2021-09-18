@@ -49,10 +49,19 @@ export const CalendarProvider = (props) => {
             .then(getCal)
     }
 
+    const deleteEvent = eventId => {
+        return fetch(`http://localhost:8000/calendar/${ eventId }`, {
+            method: "DELETE",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
+            }
+        })
+            .then(getCal)
+    }
     
 
     return (
-        <CalendarContext.Provider value={{ getCal, createEvent, getEvent, updateEvent, events, setEvents }} >
+        <CalendarContext.Provider value={{ getCal, createEvent, getEvent, updateEvent, events, setEvents, deleteEvent }} >
             { props.children }
         </CalendarContext.Provider>
     )
