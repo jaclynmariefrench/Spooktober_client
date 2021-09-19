@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { MovieTvContext } from "./MovieTvProvider"
 
 export const MovieTvList = () => {
-    const { movieTvs, getMovieTv } = useContext(MovieTvContext)
+    const { movieTvs, getMovieTv, leaveWaitlist, addWaitlist } = useContext(MovieTvContext)
 
     useEffect(()=> {
         getMovieTv();
@@ -18,12 +18,12 @@ export const MovieTvList = () => {
             <section key={m.id} className="add-to-watch">
                 <h3 className="add-cal">{m.title}</h3>
                     {
-                            m.joined
+                            m.added
                                 ? <button className="btn btn-3"
-                                    onClick={() => leaveEvent(m.id)}
+                                    onClick={() => leaveWaitlist(m.id)}
                                     >Leave</button>
                                 : <button className="btn btn-2"
-                                    onClick={() => joinEvent(m.id)}
+                                    onClick={() => addWaitlist(m.id)}
                                     >Join</button>
                         }
                 </section>

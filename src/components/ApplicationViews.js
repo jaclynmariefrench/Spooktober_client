@@ -13,10 +13,14 @@ export const ApplicationViews = () => {
     return <>
             <CalendarProvider>
             <UserProvider>
+            <MovieTvProvider>
                 <Route path= "/profile">
                     <UserDetail/>
                     <CalendarView/>
+                    <MovieTvList/>
                 </Route>
+            </MovieTvProvider>
+            </UserProvider>
             <SearchProvider>
                 <MovieTvProvider>
                     <Route path="/search">
@@ -24,7 +28,6 @@ export const ApplicationViews = () => {
                     </Route>
                 </MovieTvProvider>
             </SearchProvider>
-            </UserProvider>
             </CalendarProvider>
     </>
 }

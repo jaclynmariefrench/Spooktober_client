@@ -28,8 +28,30 @@ export const MovieTvProvider = (props) => {
         }
          )
     }
+
+    const leaveWaitlist = movieId => {
+        return fetch(`http://localhost:8000/movie_tv/${ movieId }/waitlist`, {
+            method: "DELETE",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
+            }
+        })
+            .then(getMovieTv)
+    }
+    
+
+    const addWaitlist = movieId => {
+        return fetch(`http://localhost:8000/movie_tv/${ movieId }/waitlist`, {
+            method: "POST",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
+            }
+        })
+            .then(getMovieTv)
+    }
+
     return (
-        <MovieTvContext.Provider value={{ movieTvs, setMovieTv, getMovieTv, getSingleMovie }} >
+        <MovieTvContext.Provider value={{ movieTvs, setMovieTv, getMovieTv, getSingleMovie, leaveWaitlist, addWaitlist }} >
             { props.children }
         </MovieTvContext.Provider>
     )
