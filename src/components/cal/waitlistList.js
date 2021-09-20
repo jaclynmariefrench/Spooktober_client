@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
-import { CustomDialog, useDialog, ModalButton, ModalContent, ModalFooter, Modal } from 'react-st-modal';
-import {Datepicker, START_DATE} from '@datepicker-react/styled'
+import React, { useContext, useEffect, useState, useCallback } from "react";
+import { CustomDialog, useDialog, ModalButton, ModalContent, ModalFooter } from 'react-st-modal';
 import { MovieTvContext } from "../movieTv/MovieTvProvider"
 import { CalendarContext } from "./CalendarProvider";
+import "../profile.css"
 
 
 export const WaitlistList = () => {
@@ -10,44 +10,59 @@ export const WaitlistList = () => {
     const { createEvent } = useContext(CalendarContext)
 
     const [newEvent, setNewEvent ] = useState({movie_tv: "", title: "", start: "", end: ""})
-    const [selectedMovie, setSelectedMovie ] = useState({movie_tv:""})
+    const [selectedMovie, setSelectedMovie ] = useState({})
 
+                
     useEffect(()=> {
         getUserWaitlist();
     }, [])
 
-    const handleAddtoCalendar = () => {
-        const newMovie = {
-            movie_tv: selectedMovie.id,
-            all_day: true,
-            startDate: newEvent.start,
-            endDate: newEvent.end
+    
+    useEffect(()=>{
+        if (selectedMovie != null) {
+            console.log("Hi there")
+            CustomDialog(<DatePopUp/>)
         }
-        createEvent(newMovie)
-    }
-
-      const handleDatesChange = () => {
-            setNewEvent({...newEvent, START_DATE})
-
-      }
-
-
+        
+    },[selectedMovie])
+    
+    
+                
     const DatePopUp = () => {
         const dialog = useDialog();
         const [date, setDate] = useState();
-
+        
+        const handleAddtoCalendar = () => {
+            const newMovie = {
+                movie_tv: selectedMovie.id,
+                all_day: true,
+                startDate: newEvent.start,
+                endDate: newEvent.end
+            }
+            createEvent(newMovie)
+        }
+                    
         return (
             <div className="popup">
             
             <ModalContent>
                 <ModalButton>
                     <ModalFooter>
-
-                            <Datepicker
-                                onDatesChange={handleDatesChange}
-                                startDate={newEvent.startDate} 
-                                endDate={newEvent.endDate} />
-                                 
+                        <h3 style={{
+                            color: "black"
+                        }}>{selectedMovie.title} </h3>
+                            <input
+                                type="date"
+                                placeholder="Select a Movie Date"
+                                start={newEvent.start}
+                                onChange={(start)=> setNewEvent({...newEvent, start})}
+                            />
+                            <input
+                                type="date"
+                                placeholder="Select a Movie Date"
+                                end={newEvent.end}
+                                onChange={(end)=> setNewEvent({...newEvent, end})}
+                            />
                             <button style={{marginTop: "10px"}} onClick={()=> {
                                 handleAddtoCalendar()
                                 console.log(newEvent)
@@ -57,7 +72,7 @@ export const WaitlistList = () => {
                             <button
                                 onClick={() => {
                                 // Сlose the dialog and return the value
-                                dialog.close(date);
+                                dialog.close(date)
                                 }}
                             >
                             Close
@@ -69,9 +84,9 @@ export const WaitlistList = () => {
             </div>
           );
     }
-
-    return (
-        <>
+    
+    return ( 
+        <div className="waitlist">
             <header>List of Waitlist Movies</header>
             <article className="movie-waitlist">
             {userWaitlist.map((m) => {
@@ -80,20 +95,19 @@ export const WaitlistList = () => {
                 <h3 className="add-cal">{m.movie_tv.title} {m.movie_tv.id}</h3>
                     {
                                 <button className="btn btn-3"
-                                    onClick={()=> 
-                                        
-                                        {
+                                    onClick={
+                                        ()=> {
                                             setSelectedMovie(m.movie_tv)
-                                            console.log(selectedMovie.id)
-                                            CustomDialog(<DatePopUp/>)
-                                        }}
+                                        }
+                                    }
                                     >Add to calendar</button>
                         }
                 </section>
         );
-              })}
+    })}
             </article>
-        </>
+        </div>
+
     )
 }
 

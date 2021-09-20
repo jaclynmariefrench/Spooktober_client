@@ -10,6 +10,7 @@ import { SimpleSearch } from "./search/searchForm"
 import { SearchProvider } from "./search/searchProvider"
 import { UserDetail } from "./user/UserDetail"
 import { UserProvider } from "./user/UserProvider"
+import "./profile.css"
 
 export const ApplicationViews = () => {
     return <>
@@ -19,9 +20,10 @@ export const ApplicationViews = () => {
 
                 <Route path= "/profile">
                     <NavBar/>
-                    <UserDetail/>
-                    <CalendarView/>
-                    <WaitlistList/>
+                    <div className="profile-container">
+                        <WaitlistList/>
+                        <CalendarView/>
+                    </div>
                 </Route>
             </MovieTvProvider>
             </UserProvider>
