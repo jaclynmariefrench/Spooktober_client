@@ -6,7 +6,6 @@ import { UserProvider } from "../user/UserProvider"
 import "./NavBar.css"
 
 export const NavBar = () => {
-    const history = useHistory()
     return (
         <UserProvider>
             <ul className="navbar">

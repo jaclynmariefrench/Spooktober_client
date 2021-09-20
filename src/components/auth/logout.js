@@ -1,5 +1,5 @@
 import { GoogleLogout } from 'react-google-login';
-import { useHistory } from 'react-router';
+import { useHistory, Redirect } from 'react-router';
 
 
 export const Logout = () => {
@@ -11,11 +11,13 @@ export const Logout = () => {
     }
 
   return (
+      <>
           <GoogleLogout
           clientId="151641205925-1m112obp0km0gd74pongd3i1upco1019.apps.googleusercontent.com"
           buttonText="Logout"
           onLogoutSuccess={logoutSuccess}
           >
         </GoogleLogout>
+        </>
       )
 }
