@@ -62,6 +62,7 @@ export const MovieTvProvider = (props) => {
         .then(setUserWaitList)
     }
 
+
     return (
         <MovieTvContext.Provider value={{ movieTvs, setMovieTv, getMovieTv, getSingleMovie, 
         leaveWaitlist, addWaitlist, getUserWaitlist, userWaitlist, setUserWaitList }} >
