@@ -58,7 +58,7 @@ export const CalendarProvider = (props) => {
         })
             .then(getCal)
     }
-    
+  
 
     return (
         <CalendarContext.Provider value={{ getCal, createEvent, getEvent, updateEvent, events, setEvents, deleteEvent }} >

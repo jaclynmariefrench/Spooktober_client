@@ -7,7 +7,7 @@ export const SimpleSearch = () => {
     const [eraSelect, setEra ] = useState({id: 0})
     const [spiritSelect, setSpirit ] = useState({id:0})
     
-    const { movieTvs, getMovieTv } = useContext(MovieTvContext)
+    const { movieTvs, getMovieTv, leaveWaitlist, addWaitlist } = useContext(MovieTvContext)
     const { getEras, eraList, spiritList, getSpirits } = useContext(SearchContext)
 
     useEffect(()=> {
@@ -79,49 +79,42 @@ export const SimpleSearch = () => {
                 </select>
                 </div>
             </fieldset>
-            {/* RESULTS */}
-            {
-                movieTvs.filter(
-                    (value)=> {
-                        if (searchTerm == "") {
-                            return value
-                        } else if (value.title.toLowerCase().includes(searchTerm.toLowerCase())) 
-                        {
-                            return value
-                        } else if (value.genre.toLowerCase().includes(searchTerm.toLowerCase())) 
-                        {
-                            return value
-                        } else if (value.subGenre.toLowerCase().includes(searchTerm.toLowerCase())) 
-                        {
-                            return value
-                        }       
-                    }).map(
-                        (value, key)=> {
-                            return(
-                                <div className="search-results" key={key}>
-                                    <h2>{value.title}</h2>
-                                </div>
-                            )
-                        })}
-            {
-                movieTvs.filter(
-                    (value)=> {
-                        if(eraSelect == value.id) {
-                            return value
-                        }
-                    }
-                ).map(
-                    (value, key)=> {
-                        return(
-                            <div className="search-resutls" key={key}>
-                                <header>Era Resutls</header>
-                                <h2>{value.title}</h2>
-                            </div>
+                <div>
+                {/* RESULTS */}
+                {
+                    movieTvs.filter(
+                        (value)=> {
+                            if (searchTerm == "") {
+                                return value
+                            } else if (value.title.toLowerCase().includes(searchTerm.toLowerCase())) 
+                            {
+                                return value
+                            } else if (value.genre.toLowerCase().includes(searchTerm.toLowerCase())) 
+                            {
+                                return value
+                            } else if (value.subGenre.toLowerCase().includes(searchTerm.toLowerCase())) 
+                            {
+                                return value
+                            }       
+                        }).map(
+                            (value, key)=> {
+                                return(
+                                    <section key={key} className="add-to-watch">
+                                    <h3 className="add-cal">{value.title}</h3>
+                                        {
+                                                value.added
+                                                    ? <button className="btn btn-3"
+                                                        onClick={() => leaveWaitlist(value.id)}
+                                                        >Leave</button>
+                                                    : <button className="btn btn-2"
+                                                        onClick={() => addWaitlist(value.id)}
+                                                        >Join</button>
+                                            }
+                                        </section>
+                                )
+                            }
                         )
-                    }
-                )
-            }
-                        
-                        </div>
-                        )
-}
+                            }
+
+                </div>
+            </div>)}

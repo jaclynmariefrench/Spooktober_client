@@ -2,6 +2,7 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { CalendarProvider } from "./cal/CalendarProvider"
 import { CalendarView } from "./cal/calendarView"
+import { WaitlistList } from "./cal/waitlistList"
 import { MovieTvList } from "./movieTv/MovieTvList"
 import { MovieTvProvider } from "./movieTv/MovieTvProvider"
 import { SimpleSearch } from "./search/searchForm"
@@ -13,10 +14,14 @@ export const ApplicationViews = () => {
     return <>
             <CalendarProvider>
             <UserProvider>
+            <MovieTvProvider>
                 <Route path= "/profile">
                     <UserDetail/>
                     <CalendarView/>
+                    <WaitlistList/>
                 </Route>
+            </MovieTvProvider>
+            </UserProvider>
             <SearchProvider>
                 <MovieTvProvider>
                     <Route path="/search">
@@ -24,7 +29,6 @@ export const ApplicationViews = () => {
                     </Route>
                 </MovieTvProvider>
             </SearchProvider>
-            </UserProvider>
             </CalendarProvider>
     </>
 }

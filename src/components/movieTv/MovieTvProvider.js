@@ -4,6 +4,7 @@ export const MovieTvContext = React.createContext()
 
 export const MovieTvProvider = (props) => {
     const [ movieTvs, setMovieTv ] = useState([])
+    const [ userWaitlist, setUserWaitList ] = useState([])
     
     
     const getMovieTv = () => {
@@ -28,8 +29,42 @@ export const MovieTvProvider = (props) => {
         }
          )
     }
+
+    const leaveWaitlist = movieId => {
+        return fetch(`http://localhost:8000/movie_tv/${ movieId }/waitlist`, {
+            method: "DELETE",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
+            }
+        })
+            .then(getMovieTv)
+    }
+    
+
+    const addWaitlist = movieId => {
+        return fetch(`http://localhost:8000/movie_tv/${ movieId }/waitlist`, {
+            method: "POST",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
+            }
+        })
+            .then(getMovieTv)
+    }
+
+    const getUserWaitlist = () => {
+        return fetch(`http://localhost:8000/waitlist`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
+            }
+        })
+        .then(response => response.json())
+        .then(setUserWaitList)
+    }
+
     return (
-        <MovieTvContext.Provider value={{ movieTvs, setMovieTv, getMovieTv, getSingleMovie }} >
+        <MovieTvContext.Provider value={{ movieTvs, setMovieTv, getMovieTv, getSingleMovie, 
+        leaveWaitlist, addWaitlist, getUserWaitlist, userWaitlist, setUserWaitList }} >
             { props.children }
         </MovieTvContext.Provider>
     )
