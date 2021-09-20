@@ -4,6 +4,7 @@ export const MovieTvContext = React.createContext()
 
 export const MovieTvProvider = (props) => {
     const [ movieTvs, setMovieTv ] = useState([])
+    const [ userWaitlist, setUserWaitList ] = useState([])
     
     
     const getMovieTv = () => {
@@ -50,8 +51,20 @@ export const MovieTvProvider = (props) => {
             .then(getMovieTv)
     }
 
+    const getUserWaitlist = () => {
+        return fetch(`http://localhost:8000/waitlist`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
+            }
+        })
+        .then(response => response.json())
+        .then(setUserWaitList)
+    }
+
     return (
-        <MovieTvContext.Provider value={{ movieTvs, setMovieTv, getMovieTv, getSingleMovie, leaveWaitlist, addWaitlist }} >
+        <MovieTvContext.Provider value={{ movieTvs, setMovieTv, getMovieTv, getSingleMovie, 
+        leaveWaitlist, addWaitlist, getUserWaitlist, userWaitlist, setUserWaitList }} >
             { props.children }
         </MovieTvContext.Provider>
     )

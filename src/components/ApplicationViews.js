@@ -2,6 +2,7 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { CalendarProvider } from "./cal/CalendarProvider"
 import { CalendarView } from "./cal/calendarView"
+import { WaitlistList } from "./cal/waitlistList"
 import { MovieTvList } from "./movieTv/MovieTvList"
 import { MovieTvProvider } from "./movieTv/MovieTvProvider"
 import { SimpleSearch } from "./search/searchForm"
@@ -17,7 +18,7 @@ export const ApplicationViews = () => {
                 <Route path= "/profile">
                     <UserDetail/>
                     <CalendarView/>
-                    <MovieTvList/>
+                    <WaitlistList/>
                 </Route>
             </MovieTvProvider>
             </UserProvider>

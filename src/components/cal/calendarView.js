@@ -57,17 +57,6 @@ export const CalendarView = () => {
         
 
 
-    //     setNewEvent((prevState, props) => {
-    //         const events = [...prevState.events]
-    //         const idx = events.indexOf(pEvent)
-    //         events.splice(idx, 1);
-    //         return { events };
-    //       });
-    //     }
-    //   }
-      
-        
-
     return(
         <div className="calendar">
             <h1>Calendar</h1>
