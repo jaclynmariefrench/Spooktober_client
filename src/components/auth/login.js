@@ -1,11 +1,11 @@
 import { GoogleLogin } from 'react-google-login';
-import { useHistory } from 'react-router-dom'
+import { useHistory, Redirect } from 'react-router-dom'
 
 
-export const Login = () => {
-  const history = useHistory()
+export const Login = (props) => {
 
-  const loginWithGoogleCredentials = (response) => {
+
+  const LoginWithGoogleCredentials = (response) => {
         return fetch(`http://127.0.0.1:8000/login`, {
           method: "POST",
           headers: {
@@ -19,7 +19,7 @@ export const Login = () => {
        .then(data => {
          if (data.valid && data.token) {
            localStorage.setItem("spooktober_token", data.token)
-           history.push("/profile")
+           props.history.push("/profile")
          } else {
            window.alert("Login failed.")
          }
@@ -35,7 +35,7 @@ export const Login = () => {
        <GoogleLogin
          clientId='151641205925-1m112obp0km0gd74pongd3i1upco1019.apps.googleusercontent.com'
          buttonText="Login using Google"
-         onSuccess={loginWithGoogleCredentials}
+         onSuccess={LoginWithGoogleCredentials}
          onFailure={responseGoogle_error}
          cookiePolicy={'single_host_origin'}
          isSignedIn={true}

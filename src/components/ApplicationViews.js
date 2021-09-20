@@ -5,6 +5,7 @@ import { CalendarView } from "./cal/calendarView"
 import { WaitlistList } from "./cal/waitlistList"
 import { MovieTvList } from "./movieTv/MovieTvList"
 import { MovieTvProvider } from "./movieTv/MovieTvProvider"
+import { NavBar } from "./nav/NavBar"
 import { SimpleSearch } from "./search/searchForm"
 import { SearchProvider } from "./search/searchProvider"
 import { UserDetail } from "./user/UserDetail"
@@ -15,7 +16,9 @@ export const ApplicationViews = () => {
             <CalendarProvider>
             <UserProvider>
             <MovieTvProvider>
+
                 <Route path= "/profile">
+                    <NavBar/>
                     <UserDetail/>
                     <CalendarView/>
                     <WaitlistList/>
@@ -25,6 +28,7 @@ export const ApplicationViews = () => {
             <SearchProvider>
                 <MovieTvProvider>
                     <Route path="/search">
+                        <NavBar/>
                         <SimpleSearch/>
                     </Route>
                 </MovieTvProvider>
