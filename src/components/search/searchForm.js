@@ -26,11 +26,8 @@ export const SimpleSearch = () => {
   }, []);
 
   useEffect(() => {
-    if (searchTerm !== "" || eraSelect > 0 || spiritSelect > 0) {
+    if (eraSelect > 0 || spiritSelect > 0) {
       const searchedTacos = movieTvs.filter((movie) =>
-        // movie.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        // movie.genre.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        // movie.subGenre.toLowerCase().includes(searchTerm.toLowerCase()) &&
         movie.era.id === eraSelect ||
         movie.spirit.id === spiritSelect
       );
@@ -38,7 +35,20 @@ export const SimpleSearch = () => {
     } else {
       setSearchedMovies(movieTvs);
     }
-  }, [searchTerm, eraSelect, spiritSelect]);
+  }, [ eraSelect, spiritSelect]);
+
+  useEffect(() => {
+    if (searchTerm !== "") {
+      const searchedTacos = movieTvs.filter((movie) =>
+        movie.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        movie.genre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        movie.subGenre.toLowerCase().includes(searchTerm.toLowerCase()) 
+      );
+      setSearchedMovies(searchedTacos);
+    } else {
+      setSearchedMovies(movieTvs);
+    }
+  }, [searchTerm]);
 
 
   return (
