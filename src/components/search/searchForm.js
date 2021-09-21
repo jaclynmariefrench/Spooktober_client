@@ -28,17 +28,18 @@ export const SimpleSearch = () => {
   useEffect(() => {
     if (searchTerm !== "" || eraSelect > 0 || spiritSelect > 0) {
       const searchedTacos = movieTvs.filter((movie) =>
-        movie.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        movie.genre.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        movie.subGenre.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        movie.era.id == eraSelect || 
-        movie.spirit.id == spiritSelect
+        // movie.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        // movie.genre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        // movie.subGenre.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        movie.era.id === eraSelect ||
+        movie.spirit.id === spiritSelect
       );
       setSearchedMovies(searchedTacos);
     } else {
       setSearchedMovies(movieTvs);
     }
   }, [searchTerm, eraSelect, spiritSelect]);
+
 
   return (
     <div className="simple-search">
@@ -55,7 +56,7 @@ export const SimpleSearch = () => {
         <div className="form-group">
           <select
             onChange={(e) => {
-              setEra(e.target.value);
+              setEra(parseInt(e.target.value));
             }}
           >
             <option value="0">Select the Era</option>
@@ -72,7 +73,7 @@ export const SimpleSearch = () => {
         <div className="form-group">
           <select
             onChange={(e) => {
-              setSpirit(e.target.value);
+              setSpirit(parseInt(e.target.value));
             }}
           >
             <option value="0">Select the Spirit</option>
