@@ -1,5 +1,5 @@
 import { GoogleLogin } from 'react-google-login';
-import { useHistory, Redirect } from 'react-router-dom'
+import "./login.css"
 
 
 export const Login = (props) => {
@@ -32,6 +32,7 @@ export const Login = (props) => {
 
    return (
      <>
+     <article className="login-page">
        <GoogleLogin
          clientId='151641205925-1m112obp0km0gd74pongd3i1upco1019.apps.googleusercontent.com'
          buttonText="Login using Google"
@@ -40,6 +41,7 @@ export const Login = (props) => {
          cookiePolicy={'single_host_origin'}
          isSignedIn={true}
        />
+     </article>
      </>
    )
 }

@@ -8,7 +8,7 @@ import "./NavBar.css"
 export const NavBar = () => {
     return (
         <UserProvider>
-            <ul className="navbar">
+            <ul>
                 <li className="navbar__item">
                     <Link className="nav-link" to="/profile">{
                         <UserDetail/>
