@@ -51,10 +51,7 @@ export const CalendarView = () => {
     getCal();
   }, []);
 
-//   const onSelectMovie = (pEvent) => {
-//     setClickedMovie(pEvent);
-//     console.log(pEvent);
-//   };
+
 
   return (
     <>
@@ -85,11 +82,14 @@ export const CalendarView = () => {
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Would you like to edit or delete {clickedMovie?.id}
+              Would you like to edit or delete {clickedMovie?.title}?
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               <Button>Edit</Button>
-              <Button>Delete</Button>
+              <Button
+              onClick={()=> 
+                {deleteEvent(clickedMovie.id)}
+              }>Delete</Button>
             </Typography>
           </Box>
         </Modal>
