@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import { CalendarContext } from "./CalendarProvider";
 import { useContext } from "react";
 import { useEffect } from "react";
+import DatePicker from "react-datepicker"
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "../profile.css";
@@ -40,16 +41,30 @@ const localizer = dateFnsLocalizer({
 });
 
 export const CalendarView = () => {
-  const { getCal, events, deleteEvent } = useContext(CalendarContext);
+  const { getCal, events, deleteEvent, updateEvent } = useContext(CalendarContext);
   const [clickedMovie, setClickedMovie] = useState();
+  const [newEvent, setNewEvent ] = useState({movie_tv: "", title: "", start: "", end: ""})
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleEdit = () => setOpen(true)
+  
 
   useEffect(() => {
     getCal();
   }, []);
+
+  const handleEdittoCalendar = () => {
+    const newMovie = {
+        id: clickedMovie.id,
+        movie_tv: clickedMovie.movie_tv.id,
+        all_day: true,
+        start: newEvent.start,
+        end: newEvent.end
+    }
+    updateEvent(newMovie)
+}
 
 
 
@@ -85,7 +100,10 @@ export const CalendarView = () => {
               Would you like to edit or delete {clickedMovie?.title}?
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <Button>Edit</Button>
+              <Button
+              onClick={()=>{
+                handleEdit()
+              }}>Edit</Button>
               <Button
               onClick={()=> 
                 {deleteEvent(clickedMovie.id)}
@@ -94,6 +112,53 @@ export const CalendarView = () => {
           </Box>
         </Modal>
       </div>
+      <div className="popup">
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Would you like to edit {clickedMovie?.title}?
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+        
+                            <input type="text" placeholder="Save Movie" style={{width: "20%", marginRight: "10px"}}
+                            value={clickedMovie?.id} 
+                            onChange={
+                                (e)=> setNewEvent({...newEvent, movie_tv: e.target.value})
+                            }
+                            />
+                            <DatePicker 
+                                placeholderText="Start Date" 
+                                style= {{marginRight: "10px" }}
+                                selected={newEvent.start}
+                                start={newEvent.start} 
+                                onChange={(start)=> setNewEvent({...newEvent, start})}/>
+                            <DatePicker 
+                                placeholderText="End Date" 
+                                style= {{marginRight: "10px" }}
+                                selected={newEvent.end}
+                                end={newEvent.end} 
+                                onChange={(end)=> setNewEvent({...newEvent, end})}/>
+                            <Button  onClick={handleEdittoCalendar}>
+                                Add Event
+                            </Button>
+                            <Button
+                                onClick={() => {
+                                // Сlose the dialog and return the value
+                                handleClose()
+                                
+                                }}
+                            >
+                            Close
+                        </Button>
+            </Typography>
+          </Box>
+        </Modal>
+    </div>
     </>
   );
 };
