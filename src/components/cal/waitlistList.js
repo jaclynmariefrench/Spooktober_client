@@ -61,11 +61,13 @@ export const WaitlistList = () => {
                             <DatePicker 
                                 placeholderText="Start Date" 
                                 style= {{marginRight: "10px" }}
+                                selected={newEvent.start}
                                 start={newEvent.start} 
                                 onChange={(start)=> setNewEvent({...newEvent, start})}/>
                             <DatePicker 
                                 placeholderText="End Date" 
                                 style= {{marginRight: "10px" }}
+                                selected={newEvent.end}
                                 end={newEvent.end} 
                                 onChange={(end)=> setNewEvent({...newEvent, end})}/>
                             <button style={{marginTop: "10px"}} onClick={handleAddtoCalendar}>
