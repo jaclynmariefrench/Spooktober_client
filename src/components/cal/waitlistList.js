@@ -89,12 +89,6 @@ const [newEvent, setNewEvent ] = useState({movie_tv: "", title: "", start: "", e
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
         
-                            <input type="text" placeholder="Add Movie" style={{width: "20%", marginRight: "10px"}}
-                            value={selectedMovie?.id} 
-                            onChange={
-                                (e)=> setNewEvent({...newEvent, movie_tv: e.target.value})
-                            }
-                            />
                             <DatePicker 
                                 placeholderText="Start Date" 
                                 style= {{marginRight: "10px" }}

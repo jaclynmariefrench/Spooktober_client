@@ -40,6 +40,7 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
+
 export const CalendarView = () => {
   const { getCal, events, deleteEvent, updateEvent } = useContext(CalendarContext);
   const [clickedMovie, setClickedMovie] = useState();
@@ -88,30 +89,6 @@ export const CalendarView = () => {
           style={{ height: 500, margin: "50px" }}
         />
       </div>
-      <div>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Would you like to edit or delete {clickedMovie?.title}?
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <Button
-              onClick={()=>{
-                handleEdit()
-              }}>Edit</Button>
-              <Button
-              onClick={()=> 
-                {deleteEvent(clickedMovie.id)}
-              }>Delete</Button>
-            </Typography>
-          </Box>
-        </Modal>
-      </div>
       <div className="popup">
             <Modal
                 open={open}
@@ -121,16 +98,9 @@ export const CalendarView = () => {
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Would you like to edit {clickedMovie?.title}?
+              Would you like to edit or delete {clickedMovie?.title}?
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        
-                            <input type="text" placeholder="Save Movie" style={{width: "20%", marginRight: "10px"}}
-                            value={clickedMovie?.id} 
-                            onChange={
-                                (e)=> setNewEvent({...newEvent, movie_tv: e.target.value})
-                            }
-                            />
                             <DatePicker 
                                 placeholderText="Start Date" 
                                 style= {{marginRight: "10px" }}
@@ -144,8 +114,12 @@ export const CalendarView = () => {
                                 end={newEvent.end} 
                                 onChange={(end)=> setNewEvent({...newEvent, end})}/>
                             <Button  onClick={handleEdittoCalendar}>
-                                Add Event
+                                Edit Event
                             </Button>
+                            <Button
+                              onClick={()=> 
+                                {deleteEvent(clickedMovie.id)}
+                              }>Delete</Button>
                             <Button
                                 onClick={() => {
                                 // Сlose the dialog and return the value

@@ -11,6 +11,7 @@ import { UserDetail } from "./user/UserDetail"
 import { UserProvider } from "./user/UserProvider"
 import "./profile.css"
 import ModalTest from "./cal/modaltest"
+import NestedModal from "./cal/modaltest"
 
 
 export const ApplicationViews = () => {
