@@ -22,17 +22,15 @@ export const SimpleSearch = () => {
         getSpirits();
     }, [])
 
-    useEffect(()=> {
-        let filteredMovie = []
-          for (const movie of movieTvs) {
-            for (const era of eraList) {
-              if(movie.era === era.id){
-                filteredMovie.push(movie)
-              }
-            }
-          }
-        setEra(filteredMovie)
-      }, [])
+    const handleControlledInputChange = (event) => {
+        const era = { ...eraSelect };
+        era[event.target.id] = event.target.value;
+        setEra(era);
+        const spirit = { ...spiritSelect };
+        spirit[event.target.id] = event.target.value;
+        setSpirit(spirit);
+      };
+    
   
 
     return (
@@ -49,9 +47,7 @@ export const SimpleSearch = () => {
             <h2 className="dropdown__title">What's the Era?</h2>
                 <div className="form-group">
                 <select
-                    onChange={(e)=> {
-                        setEra(e.target.value)
-                    }}
+                    onChange={handleControlledInputChange}
                 >
                     <option value="8">Select the Era</option>
                     {eraList.map((m) => (
@@ -66,9 +62,7 @@ export const SimpleSearch = () => {
             <h2 className="dropdown__title">What's the Spirit?</h2>
                 <div className="form-group">
                 <select
-                    onChange={(e)=> {
-                        setSpirit(e.target.value)
-                    }}
+                    onChange={handleControlledInputChange}
                 >
                     <option value="8">Select the Spirit</option>
                     {spiritList.map((m) => (
@@ -95,7 +89,7 @@ export const SimpleSearch = () => {
                             } else if (value.subGenre.toLowerCase().includes(searchTerm.toLowerCase())) 
                             {
                                 return value
-                            }       
+                            }     
                         }).map(
                             (value, key)=> {
                                 return(
