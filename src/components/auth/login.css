@@ -1,7 +1,30 @@
-.login-page{
+.google-button{
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
 
 }
+
+.login-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.login-header{
+    text-align: center;
+    font-size: 80px;
+    color: #3E1D33;
+    font-family: "Nosifer Caps";
+}
+
+.login-in-box {
+    display: flex;
+    border: solid;
+    padding: 50px;
+    flex-direction: column;
+    align-items: center;
+    background-color: whitesmoke;
+    border-radius: 10px;
+}
+

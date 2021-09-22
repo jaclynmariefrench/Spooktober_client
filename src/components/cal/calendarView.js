@@ -133,6 +133,7 @@ export const CalendarView = () => {
           </Box>
         </Modal>
     </div>
+    {/* <img src={"public/logo192.png"} alt="Logo" /> */}
     </>
   );
 };
