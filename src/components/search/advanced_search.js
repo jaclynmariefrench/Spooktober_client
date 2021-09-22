@@ -7,6 +7,11 @@ import Select from '@mui/material/Select';
 import { MovieTvContext } from '../movieTv/MovieTvProvider';
 import { SearchContext } from './searchProvider';
 
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Button from '@mui/material/Button';
+
 export default function BasicSelect() {
 
   const [eraSelect, setEra] = useState({ id: 0 });
@@ -93,29 +98,38 @@ export default function BasicSelect() {
   </Box>
   <fieldset>
         <h2>Dropdown Results</h2>
-      {dropDownMovies.map((drop, key) => {
-          return (
-            <section key={key} className="add-to-watch">
-              <h3 className="add-cal">{drop.title}</h3>
-        {
-              drop.added ? 
-                <button
-                  className="btn btn-3"
-                  onClick={() => leaveWaitlist(drop.id)}
-                >
-                  Leave
-                </button>
-               : 
-                <button
-                  className="btn btn-2"
-                  onClick={() => addWaitlist(drop.id)}
-                >
-                  ADD
-                </button>
-              }
-            </section>
-          );
-        })}
+        <List
+              sx={{
+                width: '100%',
+                maxWidth: 360,
+                bgcolor: 'background.paper',
+                position: 'relative',
+                overflow: 'auto',
+                maxHeight: 300,
+                '& ul': { padding: 0 },
+              }}
+              subheader={<li />}
+            >
+              {dropDownMovies.map((sectionId) => (
+                <li key={`section-${sectionId}`}>
+                  <ul>
+                      <ListItem key={`item-${sectionId}`}>
+                        <ListItemText primary={`${sectionId.title}`} />
+                      </ListItem>
+                      {    sectionId.added ? (
+                          <Button variant="contained" style={{backgroundColor: "red"}}
+                          onClick={() => leaveWaitlist(sectionId.id)}>Leave</Button>
+                          
+                          ) : (
+                          <Button variant="contained"
+                          onClick={() => addWaitlist(sectionId.id)}>Add</Button>
+
+                      )
+                      }
+                  </ul>
+                </li>
+              ))}
+            </List>
       </fieldset>
   </>
   );
