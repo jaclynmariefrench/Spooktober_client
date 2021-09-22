@@ -17,7 +17,7 @@ export const NavBar = () => {
     const history = useHistory()
     return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" style={{backgroundColor: "#3E1D33"}}>
         <Toolbar>
           <IconButton
             size="large"
@@ -28,7 +28,8 @@ export const NavBar = () => {
           >
             {/* <MenuIcon /> */}
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}
+          style={{fontFamily: "Nosifer Caps"}}>
             Spooktober
           </Typography>
           <Button color="inherit" onClick={()=>{
@@ -38,6 +39,9 @@ export const NavBar = () => {
           <Button color="inherit" onClick={()=>{
              history.push("/search")
           }}>Search</Button>
+          <Button color="inherit" onClick={()=>{
+            history.push("/advanced-search")
+          }}>Advanced Search</Button>
           <Logout/>
         </Toolbar>
       </AppBar>

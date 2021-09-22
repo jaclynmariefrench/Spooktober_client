@@ -7,11 +7,9 @@ import { MovieTvProvider } from "./movieTv/MovieTvProvider"
 import { NavBar } from "./nav/NavBar"
 import { SimpleSearch } from "./search/searchForm"
 import { SearchProvider } from "./search/searchProvider"
-import { UserDetail } from "./user/UserDetail"
 import { UserProvider } from "./user/UserProvider"
+import BasicSelect from "./search/advanced_search"
 import "./profile.css"
-import ButtonAppBar from "./cal/modaltest"
-import Blog from "./style_test/template"
 
 
 
@@ -20,7 +18,6 @@ export const ApplicationViews = () => {
             <CalendarProvider>
             <UserProvider>
             <MovieTvProvider>
-
                 <Route path= "/profile">
                     <NavBar/>
                     <div className="profile-container">
@@ -35,6 +32,10 @@ export const ApplicationViews = () => {
                     <Route path="/search">
                         <NavBar/>
                         <SimpleSearch/>
+                    </Route>
+                    <Route path="/advanced-search">
+                        <NavBar/>
+                        <BasicSelect/>
                     </Route>
                 </MovieTvProvider>
             </SearchProvider>
