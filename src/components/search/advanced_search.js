@@ -13,7 +13,7 @@ export default function BasicSelect() {
   const [spiritSelect, setSpirit] = useState({ id: 0 });
   const [dropDownMovies, setDropDown ] = useState([])
 
-  const { movieTvs, getMovieTv, leaveWaitlist, addWaitlist } =
+  const { movieTvs, getMovieTv, leaveWaitlist, addWaitlist, getUserWaitlist } =
     useContext(MovieTvContext);
   const { getEras, eraList, spiritList, getSpirits } =
     useContext(SearchContext);
@@ -21,6 +21,9 @@ export default function BasicSelect() {
     useEffect(() => {
         getMovieTv();
       }, []);
+    useEffect(() => {
+        getUserWaitlist();
+    }, []);
     
       useEffect(() => {
         getEras();
@@ -94,21 +97,22 @@ export default function BasicSelect() {
           return (
             <section key={key} className="add-to-watch">
               <h3 className="add-cal">{drop.title}</h3>
-              {drop.added ? (
+        {
+              drop.added ? 
                 <button
                   className="btn btn-3"
                   onClick={() => leaveWaitlist(drop.id)}
                 >
                   Leave
                 </button>
-              ) : (
+               : 
                 <button
                   className="btn btn-2"
                   onClick={() => addWaitlist(drop.id)}
                 >
                   ADD
                 </button>
-              )}
+              }
             </section>
           );
         })}
@@ -116,3 +120,4 @@ export default function BasicSelect() {
   </>
   );
 }
+
