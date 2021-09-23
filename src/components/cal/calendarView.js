@@ -62,7 +62,7 @@ export const CalendarView = () => {
         movie_tv: clickedMovie.movie_tv.id,
         all_day: true,
         start: newEvent.start,
-        end: newEvent.end
+        end: newEvent.start
     }
     updateEvent(newMovie)
 }
@@ -84,7 +84,7 @@ export const CalendarView = () => {
           views={["month", "agenda"]}
           events={events}
           startAccessor="start"
-          endAccessor="end"
+          endAccessor="start"
           popup="default"
           style={{ height: 500, margin: "50px", backgroundColor: "#5F2849", color: "white"}}
         />
@@ -102,17 +102,11 @@ export const CalendarView = () => {
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                             <DatePicker 
-                                placeholderText="Start Date" 
+                                placeholderText="Select Date" 
                                 style= {{marginRight: "10px" }}
                                 selected={newEvent.start}
                                 start={newEvent.start} 
                                 onChange={(start)=> setNewEvent({...newEvent, start})}/>
-                            <DatePicker 
-                                placeholderText="End Date" 
-                                style= {{marginRight: "10px" }}
-                                selected={newEvent.end}
-                                end={newEvent.end} 
-                                onChange={(end)=> setNewEvent({...newEvent, end})}/>
                             <Button  onClick={handleEdittoCalendar}>
                                 Edit Event
                             </Button>

@@ -47,7 +47,7 @@ const [newEvent, setNewEvent ] = useState({movie_tv: "", title: "", start: "", e
             movie_tv: selectedMovie.id,
             all_day: true,
             start: newEvent.start,
-            end: newEvent.end
+            end: newEvent.start
         }
         createEvent(newMovie)
     }
@@ -106,17 +106,11 @@ const [newEvent, setNewEvent ] = useState({movie_tv: "", title: "", start: "", e
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
         
                             <DatePicker 
-                                placeholderText="Start Date" 
+                                placeholderText="Select Date" 
                                 style= {{marginRight: "10px" }}
                                 selected={newEvent.start}
                                 start={newEvent.start} 
                                 onChange={(start)=> setNewEvent({...newEvent, start})}/>
-                            <DatePicker 
-                                placeholderText="End Date" 
-                                style= {{marginRight: "10px" }}
-                                selected={newEvent.end}
-                                end={newEvent.end} 
-                                onChange={(end)=> setNewEvent({...newEvent, end})}/>
                             <Button  onClick={handleAddtoCalendar}>
                                 Add Event
                             </Button>
