@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { CustomDialog, useDialog, ModalButton, ModalContent, ModalFooter } from 'react-st-modal';
 import DatePicker from "react-datepicker"
 import { MovieTvContext } from "../movieTv/MovieTvProvider"
 import { CalendarContext } from "./CalendarProvider";
@@ -26,10 +25,11 @@ const style = {
   };
 
 export const WaitlistList = () => {
-    const { getUserWaitlist, userWaitlist, leaveWaitlist } = useContext(MovieTvContext)
+    const { getUserWaitlist, userWaitlist, removeWaitlist } = useContext(MovieTvContext)
     const { createEvent } = useContext(CalendarContext)
 
 const [selectedMovie, setSelectedMovie ] = useState(undefined)
+const [selectWaitlistItem, setWaitlistItem] = useState(undefined)
     
 const [newEvent, setNewEvent ] = useState({movie_tv: "", title: "", start: "", end: ""})
 
@@ -80,6 +80,7 @@ const [newEvent, setNewEvent ] = useState({movie_tv: "", title: "", start: "", e
                                         onClick={
                                             ()=> {
                                                 setSelectedMovie(m.movie_tv)
+                                                setWaitlistItem(m.id)
                                                 handleOpen()
                                             }
                                         }
@@ -111,7 +112,11 @@ const [newEvent, setNewEvent ] = useState({movie_tv: "", title: "", start: "", e
                                 selected={newEvent.start}
                                 start={newEvent.start} 
                                 onChange={(start)=> setNewEvent({...newEvent, start})}/>
-                            <Button  onClick={handleAddtoCalendar}>
+                            <Button  onClick={()=> {
+                            handleAddtoCalendar()
+                            removeWaitlist(selectWaitlistItem)
+                        }} >
+                                
                                 Add Event
                             </Button>
                             <Button
