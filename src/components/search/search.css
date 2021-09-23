@@ -1,22 +1,18 @@
-.simple-search {
-    display: grid;
-    grid-template-columns: 2fr 2fr;
-    grid-template-rows: 2fr 2fr;
-}
-
-.searchterm {
-    grid-column: 1;
-    grid-row: 1;
-}
-
-.dropdownsearch {
-    grid-column: 2;
-
-}
-
-.search-drop-down {
+.drop-boxes {
     display: flex;
-    background-color: whitesmoke;
+    flex-direction: row;
+    margin-top: 50px;
+    justify-content: space-around;
+}
+
+.searchtermlist {
+    display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 100px;
+}
+
+.list-item {
+    display: flex;
+    margin-top: 10px;
 }

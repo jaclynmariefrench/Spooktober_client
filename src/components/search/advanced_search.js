@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { MovieTvContext } from '../movieTv/MovieTvProvider';
 import { SearchContext } from './searchProvider';
+import "./search.css"
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -60,24 +61,25 @@ export default function BasicSelect() {
 
   return (
       <>
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">What's the era?</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={eraSelect}
-          label="era"
-          onChange={handleEra}
-        >
-        {eraList.map((m) => (
-            <MenuItem key={m.id} value={m.id}>
-            {m.label}
-            </MenuItem>
-        ))}
-        </Select>
-      </FormControl>
-    </Box>
+    <div className="drop-boxes">
+      <Box sx={{ minWidth: 120 }}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">What's the era?</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={eraSelect}
+            label="era"
+            onChange={handleEra}
+          >
+          {eraList.map((m) => (
+              <MenuItem key={m.id} value={m.id}>
+              {m.label}
+              </MenuItem>
+          ))}
+          </Select>
+        </FormControl>
+      </Box>
     <Box sx={{ minWidth: 120 }}>
     <FormControl fullWidth>
       <InputLabel id="demo-simple-select-label">What's the spirit?</InputLabel>
@@ -87,20 +89,21 @@ export default function BasicSelect() {
         value={spiritSelect}
         label="spirit"
         onChange={handleSpirit}
-      >
+        >
        {spiritList.map((m) => (
-              <MenuItem key={m.id} value={m.id}>
+         <MenuItem key={m.id} value={m.id}>
                 {m.label}
               </MenuItem>
             ))}
       </Select>
     </FormControl>
   </Box>
-  <fieldset>
+  </div>
+  <fieldset className="searchtermlist">
         <h2>Dropdown Results</h2>
         <List
               sx={{
-                width: '100%',
+                width: '200%',
                 maxWidth: 360,
                 bgcolor: 'background.paper',
                 position: 'relative',
@@ -111,8 +114,8 @@ export default function BasicSelect() {
               subheader={<li />}
             >
               {dropDownMovies.map((sectionId) => (
-                <li key={`section-${sectionId}`}>
-                  <ul>
+                <li key={`section-${sectionId}`} >
+                  <ul className="list-item">
                       <ListItem key={`item-${sectionId}`}>
                         <ListItemText primary={`${sectionId.title}`} />
                       </ListItem>
