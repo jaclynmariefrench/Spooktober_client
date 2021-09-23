@@ -40,7 +40,7 @@ export const SimpleSearch = () => {
   return (
     <div className="simple-search">
       <article className="searchterm">
-      <Box
+      <Box className="search-bar"
             sx={{
               width: 500,
               maxWidth: '100%',
