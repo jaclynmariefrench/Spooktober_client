@@ -11,6 +11,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import { Icon } from "@mui/material"
+import SpooktoberIcon from '../pictures/GHOST_ICON.png'
 
 
 export const NavBar = () => {
@@ -26,12 +28,15 @@ export const NavBar = () => {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            {/* <MenuIcon /> */}
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}
           style={{fontFamily: "Nosifer Caps"}}>
             Spooktober
+          <Icon style={{width: "60px", height: "36px"}}>
+            <img src={SpooktoberIcon} height={40} width={40}/>
+          </Icon>
           </Typography>
+          
           <Button color="inherit" onClick={()=>{
              history.push("/profile")
           }}

@@ -72,7 +72,6 @@ export const CalendarView = () => {
   return (
     <>
       <div className="calendar">
-        <h1>Calendar</h1>
         <Calendar
           selectable
           onSelectEvent={(p)=>{
@@ -86,7 +85,8 @@ export const CalendarView = () => {
           events={events}
           startAccessor="start"
           endAccessor="end"
-          style={{ height: 500, margin: "50px" }}
+          popup="default"
+          style={{ height: 500, margin: "50px", backgroundColor: "#5F2849", color: "white"}}
         />
       </div>
       <div className="popup">
@@ -133,7 +133,6 @@ export const CalendarView = () => {
           </Box>
         </Modal>
     </div>
-    {/* <img src={"public/logo192.png"} alt="Logo" /> */}
     </>
   );
 };

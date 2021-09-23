@@ -2,6 +2,15 @@
   font-family: "Nosifer Caps";
   src: url("//fonts.googleapis.com/css?family=Nosifer+Caps");
 }
+@font-face {
+  font-family: 'TangoMacabre';
+  src: local('/Users/jaclynfrench/Library/Fonts/TangoMacabre.ttf'), format('ttf');
+}
+
+@font-face {
+  font-family: 'Arvo';
+  src: url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+}
 
 body {
   margin: 0;

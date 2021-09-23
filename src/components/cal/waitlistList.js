@@ -9,6 +9,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import List from '@mui/material/List';
+
+
 
 const style = {
     position: "absolute",
@@ -52,30 +55,43 @@ const [newEvent, setNewEvent ] = useState({movie_tv: "", title: "", start: "", e
     
     return ( 
         <>
-        <div className="waitlist">
-            <header>List of Waitlist Movies</header>
-            <article className="movie-waitlist">
-            {userWaitlist.map((m) => {
-            return (
-            <section key={m.id} className="add-to-watch">
-                <h3 className="add-cal">{m.movie_tv.title} {m.movie_tv.id}</h3>
-            {           <div>
-                            <button className="btn btn-3"
-                                onClick={
-                                    ()=> {
-                                        setSelectedMovie(m.movie_tv)
-                                        handleOpen()
-                                    }
-                                }
-                                >Add to calendar</button>
+        <article className="waitlist">
 
-                        </div>
-                        }
-                </section>
-        );
-    })}
-            </article>
-            </div>
+        <h1>MOVIE WATCH LIST</h1>
+        <List
+              sx={{
+                width: '100%',
+                maxWidth: 360,
+                bgcolor: 'background.paper',
+                position: 'relative',
+                overflow: 'auto',
+                maxHeight: 300,
+                '& ul': { padding: 0 },
+              }}
+              subheader={<li />}
+            >
+                {userWaitlist.map((m) => {
+                    return (
+                    <section key={m.id} className="add-to-watch">
+                        <h3 className="add-cal">{m.movie_tv.title}</h3>
+                    {           <div>
+                                    <Button 
+                                        variant="contained"
+                                        onClick={
+                                            ()=> {
+                                                setSelectedMovie(m.movie_tv)
+                                                handleOpen()
+                                            }
+                                        }
+                                        >Add to calendar</Button>
+
+                                </div>
+                                }
+                        </section>
+                            );
+                        })}
+            </List>
+        </article>
     <div className="popup">
             <Modal
                 open={open}
@@ -124,51 +140,3 @@ const [newEvent, setNewEvent ] = useState({movie_tv: "", title: "", start: "", e
 
 
 
-
-{/* <div className="popup">
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Would you like to add {selectedMovie?.title}?
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        
-                            <input type="text" placeholder="Add Movie" style={{width: "20%", marginRight: "10px"}}
-                            value={selectedMovie.id} 
-                            onChange={
-                                (e)=> setNewEvent({...newEvent, movie_tv: e.target.value})
-                            }
-                            />
-                            <DatePicker 
-                                placeholderText="Start Date" 
-                                style= {{marginRight: "10px" }}
-                                selected={newEvent.start}
-                                start={newEvent.start} 
-                                onChange={(start)=> setNewEvent({...newEvent, start})}/>
-                            <DatePicker 
-                                placeholderText="End Date" 
-                                style= {{marginRight: "10px" }}
-                                selected={newEvent.end}
-                                end={newEvent.end} 
-                                onChange={(end)=> setNewEvent({...newEvent, end})}/>
-                            <Button  onClick={handleAddtoCalendar}>
-                                Add Event
-                            </Button>
-                            <Button
-                                onClick={() => {
-                                // Сlose the dialog and return the value
-                                handleClose()
-                                
-                                }}
-                            >
-                            Close
-                        </Button>
-            </Typography>
-          </Box>
-        </Modal>
-    </div> */}

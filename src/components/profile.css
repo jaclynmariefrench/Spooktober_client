@@ -3,6 +3,8 @@
     flex-direction: column;
     grid-column: 2/4;
     grid-row: 1;
+    font-family: 'TangoMacabre';
+    font-size: x-large;
 }
 
 .waitlist {
