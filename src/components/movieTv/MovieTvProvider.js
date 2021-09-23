@@ -10,8 +10,6 @@ export const MovieTvProvider = (props) => {
     const getMovieTv = () => {
         return fetch("http://localhost:8000/movie_tv", {
             headers:{
-                // need to figure out how to get authenticated from google
-                // "Authorization": `Token ${localStorage.getItem("lu_token")}`
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
             }
         })
@@ -28,6 +26,18 @@ export const MovieTvProvider = (props) => {
             }
         }
          )
+    }
+
+ 
+
+    const removeWaitlist = movieId => {
+        return fetch(`http://localhost:8000/waitlist/${ movieId }`, {
+            method: "DELETE",
+            headers:{
+                "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
+            }
+        })
+            .then(getUserWaitlist)
     }
 
     const leaveWaitlist = movieId => {
@@ -65,7 +75,7 @@ export const MovieTvProvider = (props) => {
 
     return (
         <MovieTvContext.Provider value={{ movieTvs, setMovieTv, getMovieTv, getSingleMovie, 
-        leaveWaitlist, addWaitlist, getUserWaitlist, userWaitlist, setUserWaitList }} >
+        leaveWaitlist, addWaitlist, getUserWaitlist, userWaitlist, setUserWaitList, removeWaitlist  }} >
             { props.children }
         </MovieTvContext.Provider>
     )
