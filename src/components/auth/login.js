@@ -2,7 +2,6 @@ import { GoogleLogin } from 'react-google-login';
 import "./login.css"
 
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
@@ -10,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { green, orange } from '@mui/material/colors';
+import SpooktoberIcon from '../pictures/GHOST_ICON.png'
+import { Icon } from '@mui/material';
 
 function Copyright(props) {
   return (
@@ -79,9 +80,9 @@ export const Login = (props) => {
           }}
         >
           <div className="login-in-box">
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            {/* <img src={"pictures/GHOST_ICON.png"} alt="Logo" /> */}
-          </Avatar>
+          <Icon style={{width: "60px", height: "60px"}}>
+            <img src={SpooktoberIcon} height={50} width={50}/>
+          </Icon>
           <Typography component="h1" variant="h5">
             Sign in with Google
           </Typography>
