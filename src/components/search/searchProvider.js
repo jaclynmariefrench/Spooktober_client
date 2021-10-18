@@ -8,7 +8,7 @@ export const SearchProvider = (props) => {
     
     
     const getEras = () => {
-        return fetch("http://localhost:8000/era", {
+        return fetch("https://spooktober-server.herokuapp.com/era", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
             }
@@ -18,7 +18,7 @@ export const SearchProvider = (props) => {
     }
 
     const getSingleEra = (era_id) => {
-        return fetch(`http://localhost:8000/era/${era_id}`, {
+        return fetch(`https://spooktober-server.herokuapp.com/era/${era_id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
             }
@@ -27,7 +27,7 @@ export const SearchProvider = (props) => {
     }
 
     const getSpirits = () => {
-        return fetch("http://localhost:8000/spirit", {
+        return fetch("https://spooktober-server.herokuapp.com/spirit", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
             }
@@ -37,7 +37,7 @@ export const SearchProvider = (props) => {
     }
 
     const getSingleSpirit = (spirit_id) => {
-        return fetch(`http://localhost:8000/era/${spirit_id}`, {
+        return fetch(`https://spooktober-server.herokuapp.com/era/${spirit_id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
             }

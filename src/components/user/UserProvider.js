@@ -6,7 +6,7 @@ export const UserProvider = (props) => {
     const [users, setUsers] = useState([])
 
     const getUsers = () => {
-        return fetch("http://localhost:8000/users", 
+        return fetch("https://spooktober-server.herokuapp.com/users", 
         { 
             headers: {
             "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
@@ -16,7 +16,7 @@ export const UserProvider = (props) => {
     }
 
     const getSingleUser = (user_id) => {
-        return fetch(`http://localhost:8000/users/${user_id}`, {
+        return fetch(`https://spooktober-server.herokuapp.com/users/${user_id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
             }

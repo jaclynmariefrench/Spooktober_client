@@ -8,7 +8,7 @@ export const MovieTvProvider = (props) => {
     
     
     const getMovieTv = () => {
-        return fetch("http://localhost:8000/movie_tv", {
+        return fetch("https://spooktober-server.herokuapp.com/movie_tv", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
             }
@@ -18,7 +18,7 @@ export const MovieTvProvider = (props) => {
     }
 
     const getSingleMovie = (movie_id) => {
-        return fetch(`http://localhost:8000/movie_tv/${movie_id}`, {
+        return fetch(`https://spooktober-server.herokuapp.com/movie_tv/${movie_id}`, {
             // need to figure out how to get authenticated from google
             headers: {
                 // "Authorization": `Token ${localStorage.getItem("lu_token")}`
@@ -31,7 +31,7 @@ export const MovieTvProvider = (props) => {
  
 
     const removeWaitlist = movieId => {
-        return fetch(`http://localhost:8000/waitlist/${ movieId }`, {
+        return fetch(`https://spooktober-server.herokuapp.com/waitlist/${ movieId }`, {
             method: "DELETE",
             headers:{
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
@@ -41,7 +41,7 @@ export const MovieTvProvider = (props) => {
     }
 
     const leaveWaitlist = movieId => {
-        return fetch(`http://localhost:8000/movie_tv/${ movieId }/waitlist`, {
+        return fetch(`https://spooktober-server.herokuapp.com/movie_tv/${ movieId }/waitlist`, {
             method: "DELETE",
             headers:{
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
@@ -52,7 +52,7 @@ export const MovieTvProvider = (props) => {
     
 
     const addWaitlist = movieId => {
-        return fetch(`http://localhost:8000/movie_tv/${ movieId }/waitlist`, {
+        return fetch(`https://spooktober-server.herokuapp.com/movie_tv/${ movieId }/waitlist`, {
             method: "POST",
             headers:{
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
@@ -62,7 +62,7 @@ export const MovieTvProvider = (props) => {
     }
 
     const getUserWaitlist = () => {
-        return fetch(`http://localhost:8000/waitlist`, {
+        return fetch(`https://spooktober-server.herokuapp.com/waitlist`, {
             method: "GET",
             headers: {
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
