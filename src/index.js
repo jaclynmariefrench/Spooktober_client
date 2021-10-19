@@ -4,6 +4,8 @@ import { BrowserRouter as Router } from "react-router-dom"
 import { Spooktober } from './components/Spooktober';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import './fonts/nosifer/NosiferCaps-Regular.ttf';
+import './fonts/tango/TangoMacabre.ttf'
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,10 +1,12 @@
+
+
 @font-face {
   font-family: "Nosifer Caps";
-  src: url("//fonts.googleapis.com/css?family=Nosifer+Caps");
+  src: local("Nosifer Caps"), url("./fonts/nosifer/NosiferCaps-Regular.ttf"), format('truetype');
 }
 @font-face {
   font-family: 'TangoMacabre';
-  src: local('/Users/jaclynfrench/Library/Fonts/TangoMacabre.ttf'), format('ttf');
+  src: local("TangoMacabre"), url("./fonts/tango/TangoMacabre.ttf"), format('truetype');
 }
 
 @font-face {
