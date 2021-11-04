@@ -10,7 +10,6 @@ import { SearchProvider } from "./search/searchProvider"
 import { UserProvider } from "./user/UserProvider"
 import BasicSelect from "./search/advanced_search"
 import "./profile.css"
-import VirtualizedList from "./search/listtest"
 
 
 
@@ -33,7 +32,6 @@ export const ApplicationViews = () => {
                     <Route path="/search">
                         <NavBar/>
                         <SimpleSearch/>
-                        {/* <VirtualizedList/> */}
                     </Route>
                     <Route path="/advanced-search">
                         <NavBar/>

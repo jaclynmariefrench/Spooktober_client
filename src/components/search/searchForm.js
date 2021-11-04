@@ -69,7 +69,8 @@ export const SimpleSearch = () => {
                 <li key={`section-${sectionId}`}>
                   <ul>
                       <ListItem key={`item-${sectionId}`}>
-                        <ListItemText primary={`${sectionId.title}`} />
+                        {/* put link here */}
+                        <ListItemText primary={`${sectionId.title}`} /> 
                       </ListItem>
                       {    sectionId.added ? (
                           <Button variant="contained" style={{backgroundColor: "red"}}
