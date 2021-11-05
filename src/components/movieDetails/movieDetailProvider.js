@@ -14,17 +14,12 @@ export const MovieDetailProvider = (props) => {
                 "x-rapidapi-key": "8d35a21186msh13c018c76b51e55p175f7ajsn4e29773be49a"
             }
         })
-            .then(response => {
-                response.json()
-            })
-            .then(response => { setMovies(response) })
-            .catch(err => {
-                console.log("oops");
-            });
+        .then(res => res.json())
+        .then((response) => setMovies(response.Search))
     }
 
     return (
-        <MovieDetailContext.Provider value={{ getMovieBySearch, movies, setMovies  }} >
+        <MovieDetailContext.Provider value={{ getMovieBySearch, movies, setMovies, searchTerms, setSearchTerms  }} >
             { props.children }
         </MovieDetailContext.Provider>
     )

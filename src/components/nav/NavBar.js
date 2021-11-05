@@ -47,6 +47,9 @@ export const NavBar = () => {
           <Button color="inherit" onClick={()=>{
             history.push("/advanced-search")
           }}>Advanced Search</Button>
+          <Button color="inherit" onClick={()=>{
+            history.push("/moviedetail")
+          }}>Movie Detail</Button>
           <Logout/>
         </Toolbar>
       </AppBar>
