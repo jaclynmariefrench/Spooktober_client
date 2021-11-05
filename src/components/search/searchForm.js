@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MovieTvContext } from "../movieTv/MovieTvProvider";
 
 import Box from '@mui/material/Box';
@@ -7,12 +7,30 @@ import "./search.css"
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
+import ListItemButton from '@mui/material/ListItemButton';
+import Typography from "@mui/material/Typography";
+import Modal from "@mui/material/Modal";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 export const SimpleSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchedMovies, setSearchedMovies] = useState([]);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const { movieTvs, getMovieTv, leaveWaitlist, addWaitlist } =
     useContext(MovieTvContext);
@@ -70,7 +88,11 @@ export const SimpleSearch = () => {
                   <ul>
                       <ListItem key={`item-${sectionId}`}>
                         {/* put link here */}
-                        <ListItemText primary={`${sectionId.title}`} /> 
+                        <ListItemButton onClick={
+                                            ()=> {
+                                                handleOpen()
+                                            }
+                                        }>{`${sectionId.title}`}</ListItemButton>
                       </ListItem>
                       {    sectionId.added ? (
                           <Button variant="contained" style={{backgroundColor: "red"}}
@@ -88,6 +110,24 @@ export const SimpleSearch = () => {
             </List>
       
         </article>
+        <div className="popup">
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+        >
+                <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Does this work?
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                
+                    Stuff in here. 
+                    </Typography>
+                </Box>
+        </Modal>
+    </div>
       
     </div>
 

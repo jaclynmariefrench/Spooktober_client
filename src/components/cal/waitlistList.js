@@ -28,14 +28,14 @@ export const WaitlistList = () => {
     const { getUserWaitlist, userWaitlist, removeWaitlist } = useContext(MovieTvContext)
     const { createEvent } = useContext(CalendarContext)
 
-const [selectedMovie, setSelectedMovie ] = useState(undefined)
-const [selectWaitlistItem, setWaitlistItem] = useState(undefined)
-    
-const [newEvent, setNewEvent ] = useState({movie_tv: "", title: "", start: "", end: ""})
+    const [selectedMovie, setSelectedMovie ] = useState(undefined)
+    const [selectWaitlistItem, setWaitlistItem] = useState(undefined)
+        
+    const [newEvent, setNewEvent ] = useState({movie_tv: "", title: "", start: "", end: ""})
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     
     useEffect(()=> {
         getUserWaitlist();
@@ -100,36 +100,37 @@ const [newEvent, setNewEvent ] = useState({movie_tv: "", title: "", start: "", e
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
         >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Would you like to add {selectedMovie?.title}?
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        
-                            <DatePicker 
-                                placeholderText="Select Date" 
-                                style= {{marginRight: "10px" }}
-                                selected={newEvent.start}
-                                start={newEvent.start} 
-                                onChange={(start)=> setNewEvent({...newEvent, start})}/>
-                            <Button  onClick={()=> {
-                            handleAddtoCalendar()
-                            removeWaitlist(selectWaitlistItem)
-                        }} >
-                                
-                                Add Event
-                            </Button>
-                            <Button
-                                onClick={() => {
-                                // Сlose the dialog and return the value
-                                handleClose()
-                                
-                                }}
-                            >
-                            Close
-                        </Button>
-            </Typography>
-          </Box>
+                <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                    Would you like to add {selectedMovie?.title}?
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                
+                                    <DatePicker 
+                                        placeholderText="Select Date" 
+                                        style= {{marginRight: "10px" }}
+                                        selected={newEvent.start}
+                                        start={newEvent.start} 
+                                        onChange={(start)=> setNewEvent({...newEvent, start})}/>
+                                    <Button  onClick={()=> {
+                                        handleAddtoCalendar()
+                                        removeWaitlist(selectWaitlistItem)
+                                        handleClose()
+                                    }} >
+                                        
+                                        Add Event
+                                    </Button>
+                                    <Button
+                                        onClick={() => {
+                                        // Сlose the dialog and return the value
+                                        handleClose()
+                                        
+                                        }}
+                                    >
+                                    Close
+                                </Button>
+                    </Typography>
+                </Box>
         </Modal>
     </div>
     </>

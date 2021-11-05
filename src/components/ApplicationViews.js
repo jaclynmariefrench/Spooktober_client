@@ -12,6 +12,7 @@ import BasicSelect from "./search/advanced_search"
 import "./profile.css"
 import { MovieDetailProvider } from "./movieDetails/movieDetailProvider"
 import { MovieApiDetail } from "./movieDetails/movieDetail"
+import { MovieTvList } from "./movieTv/MovieTvList"
 
 
 
@@ -44,10 +45,13 @@ export const ApplicationViews = () => {
                     </SearchProvider>
             </CalendarProvider>
             <MovieDetailProvider>
-                <Route path= "/moviedetail">
-                    <NavBar/>
-                    <MovieApiDetail/>
-                </Route>
+                <MovieTvProvider>
+                    <Route path= "/moviedetail">
+                        <NavBar/>
+                        <MovieApiDetail/>
+                        <MovieTvList/>
+                    </Route>
+                </MovieTvProvider>
             </MovieDetailProvider>
     </>
 }
