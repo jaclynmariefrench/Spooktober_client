@@ -27,6 +27,7 @@ const style = {
 export const SimpleSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchedMovies, setSearchedMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie ] = useState(undefined)
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -91,6 +92,7 @@ export const SimpleSearch = () => {
                         <ListItemButton onClick={
                                             ()=> {
                                                 handleOpen()
+                                                setSelectedMovie(sectionId.children)
                                             }
                                         }>{`${sectionId.title}`}</ListItemButton>
                       </ListItem>
@@ -124,6 +126,7 @@ export const SimpleSearch = () => {
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 
                     Stuff in here. 
+                    {selectedMovie?.children}
                     </Typography>
                 </Box>
         </Modal>
@@ -141,27 +144,3 @@ export const SimpleSearch = () => {
 
 
 
-
-{/* <h2>Search Term Results</h2>
-        {searchedMovies.map((value, key) => {
-          return (
-            <section key={key} className="add-to-watch">
-              <h3 className="add-cal">{value.title}</h3>
-              {value.added ? (
-                <button
-                  className="btn btn-3"
-                  onClick={() => leaveWaitlist(value.id)}
-                >
-                  Leave
-                </button>
-              ) : (
-                <button
-                  className="btn btn-2"
-                  onClick={() => addWaitlist(value.id)}
-                >
-                  ADD
-                </button>
-              )}
-            </section>
-          );
-        })} */}
