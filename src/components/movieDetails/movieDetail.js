@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { MovieDetailContext } from "./movieDetailProvider"
 
 export const MovieApiDetail = () => {
-    const { getMovieBySearch, moviesDetails, setMoviesDetail } = useContext(MovieDetailContext)
+    const { moviesDetails } = useContext(MovieDetailContext)
     // const [ filteredMovies, setFiltered ] = useState([])
 
 
@@ -22,7 +22,7 @@ export const MovieApiDetail = () => {
     return (
         <section>
             PICTURE
-            <img src={`${moviesDetails.Poster}`} />
+            <img src={`${moviesDetails.image.url}`} />
                 {/* {moviesDetails.filter(
                     movie => {
                         return(
