@@ -3,8 +3,8 @@ import React, { useState } from "react"
 export const MovieDetailContext = React.createContext()
 
 export const MovieDetailProvider = (props) => {
-    const [movies, setMovies] = useState([])
-    const [searchTerms, setSearchTerms] = useState("")
+    const [moviesDetails, setMoviesDetail] = useState([])
+
 
     const getMovieBySearch = (searchWord) => {
         fetch(`https://movie-database-imdb-alternative.p.rapidapi.com/?s=${searchWord}&page=1`, {
@@ -15,11 +15,11 @@ export const MovieDetailProvider = (props) => {
             }
         })
         .then(res => res.json())
-        .then((response) => setMovies(response.Search))
+        .then((response) => setMoviesDetail(response.Search[0]))
     }
 
     return (
-        <MovieDetailContext.Provider value={{ getMovieBySearch, movies, setMovies, searchTerms, setSearchTerms  }} >
+        <MovieDetailContext.Provider value={{ getMovieBySearch, moviesDetails, setMoviesDetail  }} >
             { props.children }
         </MovieDetailContext.Provider>
     )

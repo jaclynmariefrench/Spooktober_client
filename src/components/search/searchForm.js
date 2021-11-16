@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MovieTvContext } from "../movieTv/MovieTvProvider";
+import { MovieDetailContext } from "../movieDetails/movieDetailProvider"
+import { MovieApiDetail } from "../movieDetails/movieDetail"
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -35,9 +37,14 @@ export const SimpleSearch = () => {
 
   const { movieTvs, getMovieTv, leaveWaitlist, addWaitlist } =
     useContext(MovieTvContext);
+  const { searchTerms, setSearchTerms, getMovieBySearch } = useContext(MovieDetailContext)
 
   useEffect(() => {
     getMovieTv();
+  }, []);
+
+  useEffect(() => {
+    getMovieBySearch();
   }, []);
 
 
@@ -92,6 +99,7 @@ export const SimpleSearch = () => {
                         <ListItemButton onClick={
                                             ()=> {
                                                 setSelectedMovie(sectionId)
+                                                getMovieBySearch(sectionId.title)
                                                 handleOpen()
                                             }
                                         }>{`${sectionId.title}`}</ListItemButton>
@@ -122,12 +130,10 @@ export const SimpleSearch = () => {
         >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                    Does this work?
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                
-                    This will work sometime.  
                     {`${selectedMovie?.title}`}
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}> 
+                        <MovieApiDetail/>
                     </Typography>
                 </Box>
         </Modal>

@@ -2,27 +2,28 @@ import React, { useContext, useEffect, useState } from "react"
 import { MovieDetailContext } from "./movieDetailProvider"
 
 export const MovieApiDetail = () => {
-    const { getMovieBySearch, movies, searchTerms } = useContext(MovieDetailContext)
-    const [ filteredMovies, setFiltered ] = useState([])
+    const { getMovieBySearch, moviesDetails, setMoviesDetail } = useContext(MovieDetailContext)
+    // const [ filteredMovies, setFiltered ] = useState([])
 
 
-    useEffect(() => {
-        getMovieBySearch()
-    }, [])
+    // useEffect(() => {
+    //     getMovieBySearch()
+    // }, [setMoviesDetail])
 
-    useEffect(() => {
-        if (searchTerms !== "") {
-         setFiltered(getMovieBySearch(searchTerms))
-          const subset = movies.filter(movie => movie.Title.toLowerCase().includes(searchTerms.toLowerCase()))
-          setFiltered(subset)
-        } 
-      }, [searchTerms])
+    // useEffect(() => {
+    //     if (searchTerms !== "") {
+    //      setFiltered(getMovieBySearch(searchTerms))
+    //       const subset = movies.filter(movie => movie.Title.toLowerCase().includes(searchTerms.toLowerCase()))
+    //       setFiltered(subset)
+    //     } 
+    //   }, [searchTerms])
 
 
     return (
         <section>
-            HI
-                {filteredMovies.map(
+            PICTURE
+            <img src={`${moviesDetails.Poster}`} />
+                {/* {moviesDetails.filter(
                     movie => {
                         return(
                             <>
@@ -32,7 +33,7 @@ export const MovieApiDetail = () => {
                             </>
                         )
                     }
-                )}
+                )} */}
         </section>
     )
 
