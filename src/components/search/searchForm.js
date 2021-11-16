@@ -27,7 +27,7 @@ const style = {
 export const SimpleSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchedMovies, setSearchedMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie ] = useState(undefined)
+  const [selectedMovie, setSelectedMovie ] = useState({})
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -88,11 +88,11 @@ export const SimpleSearch = () => {
                 <li key={`section-${sectionId}`}>
                   <ul>
                       <ListItem key={`item-${sectionId}`}>
-                        {/* put link here */}
+                        {/* MOVIE TITLE CLICKABLE */}
                         <ListItemButton onClick={
                                             ()=> {
+                                                setSelectedMovie(sectionId)
                                                 handleOpen()
-                                                setSelectedMovie(sectionId.children)
                                             }
                                         }>{`${sectionId.title}`}</ListItemButton>
                       </ListItem>
@@ -112,6 +112,7 @@ export const SimpleSearch = () => {
             </List>
       
         </article>
+        {/* MOVIE API DETAIL MODAL */}
         <div className="popup">
             <Modal
                 open={open}
@@ -125,8 +126,8 @@ export const SimpleSearch = () => {
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                 
-                    Stuff in here. 
-                    {selectedMovie?.children}
+                    This will work sometime.  
+                    {`${selectedMovie?.title}`}
                     </Typography>
                 </Box>
         </Modal>

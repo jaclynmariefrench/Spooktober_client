@@ -44,7 +44,7 @@ export const ApplicationViews = () => {
                         </MovieTvProvider>
                     </SearchProvider>
             </CalendarProvider>
-            <MovieDetailProvider>
+            {/* <MovieDetailProvider>
                 <MovieTvProvider>
                     <Route path= "/moviedetail">
                         <NavBar/>
@@ -52,6 +52,6 @@ export const ApplicationViews = () => {
                         <MovieTvList/>
                     </Route>
                 </MovieTvProvider>
-            </MovieDetailProvider>
+            </MovieDetailProvider> */}
     </>
 }
