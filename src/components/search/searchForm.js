@@ -91,32 +91,63 @@ export const SimpleSearch = () => {
               }}
               subheader={<li />}
             >
-              {searchedMovies.map((sectionId) => (
-                <li key={`section-${sectionId}`}>
-                  <ul>
-                      <ListItem key={`item-${sectionId}`}>
-                        {/* MOVIE TITLE CLICKABLE */}
-                        <ListItemButton onClick={
-                                            ()=> {
-                                                setSelectedMovie(sectionId)
-                                                getMovieBySearch(sectionId.title)
-                                                handleOpen()
-                                            }
-                                        }>{`${sectionId.title}`}</ListItemButton>
-                      </ListItem>
-                      {    sectionId.added ? (
-                          <Button variant="contained" style={{backgroundColor: "red"}}
-                          onClick={() => leaveWaitlist(sectionId.id)}>Leave</Button>
-                          
-                          ) : (
-                          <Button variant="contained"
-                          onClick={() => addWaitlist(sectionId.id)}>Add</Button>
+{searchedMovies.map((sectionId) => (
+  <li key={`section-${sectionId}`}>
+    <ul>
+      <ListItem key={`item-${sectionId}`}>
+        {/* MOVIE TITLE CLICKABLE */}
+        <ListItemButton
+          onClick={() => {
+            setSelectedMovie(sectionId);
+            getMovieBySearch(sectionId.title);
+            handleOpen();
+          }}
+        >
+          {`${sectionId.title}`}
+        </ListItemButton>
+      </ListItem>
+      {sectionId.added ? (
+        <Button
+        variant="contained"
+        style={{ backgroundColor: "red" }}
+        onClick={() => {
+          leaveWaitlist(sectionId.id).then(() => {
+            // Update the 'added' property immediately after removing from waitlist
+            const updatedSearchedMovies = searchedMovies.map((movie) => {
+              if (movie.id === sectionId.id) {
+                return { ...movie, added: false };
+              }
+              return movie;
+            });
+            setSearchedMovies(updatedSearchedMovies);
+          });
+        }}
+      >
+        Leave
+      </Button>
+      ) : (
+        <Button
+  variant="contained"
+  onClick={() => {
+    addWaitlist(sectionId.id).then(() => {
+      // Update the 'added' property immediately after adding to waitlist
+      const updatedSearchedMovies = searchedMovies.map((movie) => {
+        if (movie.id === sectionId.id) {
+          return { ...movie, added: true };
+        }
+        return movie;
+      });
+      setSearchedMovies(updatedSearchedMovies);
+    });
+  }}
+>
+  Add
+</Button>
+      )}
+    </ul>
+  </li>
+))}
 
-                      )
-                      }
-                  </ul>
-                </li>
-              ))}
             </List>
       
         </article>

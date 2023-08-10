@@ -7,7 +7,7 @@ export const CalendarProvider = (props) => {
 
 
     const getCal = () => {
-        return fetch("https://spooktober-server.herokuapp.com/calendar", {
+        return fetch("http://localhost:8000/calendar", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
             }
@@ -17,7 +17,7 @@ export const CalendarProvider = (props) => {
     }
 
     const createEvent = (event) => {
-        return fetch("https://spooktober-server.herokuapp.com/calendar", {
+        return fetch("http://localhost:8000/calendar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export const CalendarProvider = (props) => {
     }
 
     const getEvent = (event_id) => {
-        return fetch(`https://spooktober-server.herokuapp.com/calendar/${event_id}`, {
+        return fetch(`http://localhost:8000/calendar/${event_id}`, {
             headers: {
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`
             }
@@ -38,7 +38,7 @@ export const CalendarProvider = (props) => {
     }
     
     const updateEvent = (event) => {
-        return fetch(`https://spooktober-server.herokuapp.com/calendar/${event.id}`, {
+        return fetch(`http://localhost:8000/calendar/${event.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -50,7 +50,7 @@ export const CalendarProvider = (props) => {
     }
 
     const deleteEvent = eventId => {
-        return fetch(`https://spooktober-server.herokuapp.com/calendar/${ eventId }`, {
+        return fetch(`http://localhost:8000/calendar/${ eventId }`, {
             method: "DELETE",
             headers:{
                 "Authorization": `Token ${localStorage.getItem("spooktober_token")}`

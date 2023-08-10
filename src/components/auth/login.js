@@ -41,7 +41,7 @@ export const Login = (props) => {
 
 
   const LoginWithGoogleCredentials = (response) => {
-        return fetch(`https://spooktober-server.herokuapp.com/login`, {
+        return fetch(`http://localhost:8000/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -39,17 +39,28 @@ export default function BasicSelect() {
         getSpirits();
       }, []);
       
-    useEffect(() => {
-    if (eraSelect > 0 || spiritSelect > 0) {
-        const searchedTacos = movieTvs.filter((movie) =>
-        movie.era.id === eraSelect ||
-        movie.spirit.id === spiritSelect
-        );
-        setDropDown(searchedTacos);
-    } else {
-        setDropDown(movieTvs);
-    }
-    }, [ eraSelect, spiritSelect]);
+      useEffect(() => {
+        if (eraSelect > 0 && spiritSelect > 0) {
+          const searchedTacos = movieTvs.filter(
+            (movie) =>
+              movie.era.id === eraSelect && movie.spirit.id === spiritSelect
+          );
+          setDropDown(searchedTacos);
+        } else if (eraSelect > 0) {
+          const searchedTacos = movieTvs.filter(
+            (movie) => movie.era.id === eraSelect
+          );
+          setDropDown(searchedTacos);
+        } else if (spiritSelect > 0) {
+          const searchedTacos = movieTvs.filter(
+            (movie) => movie.spirit.id === spiritSelect
+          );
+          setDropDown(searchedTacos);
+        } else {
+          setDropDown(movieTvs);
+        }
+      }, [eraSelect, spiritSelect, movieTvs]);
+      
 
   const handleEra = (era) => {
     setEra(era.target.value);
